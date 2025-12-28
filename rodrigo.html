@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndusTech - Soluções Industriais</title>
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configurações do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: { 500: '#f59e0b', 600: '#d97706' },
+                        slate: { 800: '#1e293b', 900: '#0f172a', 950: '#020617' }
+                    },
+                    keyframes: {
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        /* Animação dos Pontos (Hotspots) */
+        .hotspot-active .dot { background-color: white; }
+        .hotspot-active .ring-border { border-color: white; background-color: #f59e0b; transform: scale(1.25); }
+        .hotspot-inactive .dot { background-color: #f59e0b; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 font-sans selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 md:py-6 bg-transparent">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-slate-900 font-bold text-xl">I</div>
+                <span class="text-xl font-bold tracking-tight text-white">INDUS<span class="text-amber-500">TECH</span></span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="hover:text-amber-500 transition-colors">Home</a>
+                <a href="#interactive" class="hover:text-amber-500 transition-colors">Tecnologia</a>
+                <a href="#services" class="hover:text-amber-500 transition-colors">Serviços</a>
+                <a href="#contact" class="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded transition-colors">Orçamento Técnico</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white"><i data-lucide="menu"></i></button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-slate-900 border-b border-slate-800 p-4 flex flex-col gap-4 shadow-2xl z-40">
+            <a href="#home" class="mobile-link text-left py-3 border-b border-slate-800">Home</a>
+            <a href="#interactive" class="mobile-link text-left py-3 border-b border-slate-800">Tecnologia</a>
+            <a href="#services" class="mobile-link text-left py-3 border-b border-slate-800">Serviços</a>
+            <a href="#contact" class="mobile-link text-left py-3 text-amber-500 font-bold">Contato</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-28 pb-16 md:pt-48 md:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-amber-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-1/3 h-full bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 text-amber-500 text-xs md:text-sm font-medium mb-6 animate-fade-in-up">
+                    <i data-lucide="zap" class="w-4 h-4"></i> Soluções Industriais de Alta Performance
+                </div>
+                <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+                    A Evolução da Sua <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Máquina Injetora</span>
+                </h1>
+                <p class="text-base md:text-xl text-slate-400 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Elevamos a eficiência do seu parque industrial através de manutenção especializada, retrofitting avançado e automação inteligente.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#interactive" class="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-lg shadow-amber-500/20">
+                        Ver Soluções Interativas <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded border border-slate-700 transition-all">
+                        Falar com Engenharia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section (PORTFÓLIO INTERATIVO COM FOTO REAL) -->
+    <section id="interactive" class="py-12 md:py-20 bg-slate-900 relative border-y border-slate-800">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-8 md:mb-12">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">Portfólio Interativo</h2>
+                <p class="text-sm md:text-base text-slate-400 max-w-2xl mx-auto">
+                    Explore nossa capacidade técnica. Clique nos componentes da máquina abaixo para descobrir as soluções específicas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                
+                <!-- Visualizador com Foto -->
+                <div class="lg:col-span-2">
+                    <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-2xl group select-none">
+                        
+                        <!-- Grid Background (Efeito Tecnológico sobre a foto) -->
+                        <div class="absolute inset-0 z-10 opacity-10 pointer-events-none" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+                        <!-- MENSAGEM DE ERRO / FALLBACK (Aparece se a imagem falhar) -->
+                        <div id="fallback-message" class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-0">
+                            <i data-lucide="image-off" class="w-12 h-12 text-slate-600 mb-2"></i>
+                            <p class="text-slate-400 font-bold">Imagem não encontrada</p>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Verifique se o arquivo <br>
+                                <code class="bg-slate-900 px-1 py-0.5 rounded text-amber-500">Injetora-de-Plastico-Hibrida-1-815x342.jpg</code><br>
+                                está na mesma pasta que este arquivo HTML.
+                            </p>
+                        </div>
+
+                        <!-- FOTO DA MÁQUINA -->
+                        <!-- O 'onerror' esconde a imagem quebrada e mostra a mensagem de erro acima -->
+                        <img 
+                            src="Injetora-de-Plastico-Hibrida-1-815x342.jpg" 
+                            alt="Máquina Injetora Híbrida" 
+                            class="absolute inset-0 w-full h-full object-cover z-10"
+                            onerror="this.style.display='none';"
+                        >
+
+                        <!-- Hotspots (Pontos Interativos) -->
+                        <!-- Z-Index 20 garante que fiquem acima da imagem -->
+                        <div class="absolute inset-0 z-20">
+                            
+                            <!-- Fechamento (Esquerda) -->
+                            <div onclick="selectPart('clamping')" class="hotspot absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group" style="left: 20%; top: 50%;">
+                                <div id="dot-clamping" class="ring-border w-6 h-6 rounded-full border-2 bg-slate-900/80 border-amber-500 transition-all shadow-lg flex items-center justify-center hover:scale-110">
+                                    <div class="dot w-2 h-2 rounded-full bg-amber-500"></div>
+                                </div>
+                                <div class="hidden md:block absolute top-8 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-3 rounded border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Fechamento</div>
+                            </div>
+
+                            <!-- Injeção (Direita) -->
+                            <div onclick="selectPart('injection')" class="hotspot absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group" style="left: 70%; top: 55%;">
+                                <div id="dot-injection" class="ring-border w-6 h-6 rounded-full border-2 bg-slate-900/80 border-amber-500 transition-all shadow-lg flex items-center justify-center hover:scale-110">
+                                    <div class="dot w-2 h-2 rounded-full bg-amber-500"></div>
+                                </div>
+                                <div class="hidden md:block absolute top-8 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-3 rounded border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Injeção</div>
+                            </div>
+
+                            <!-- Painel (Topo/Centro) -->
+                            <div onclick="selectPart('panel')" class="hotspot absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group" style="left: 80%; top: 25%;">
+                                <div id="dot-panel" class="ring-border w-6 h-6 rounded-full border-2 bg-slate-900/80 border-amber-500 transition-all shadow-lg flex items-center justify-center hover:scale-110">
+                                    <div class="dot w-2 h-2 rounded-full bg-amber-500"></div>
+                                </div>
+                                <div class="hidden md:block absolute top-8 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-3 rounded border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Painel</div>
+                            </div>
+
+                            <!-- Hidráulica (Baixo/Centro) -->
+                            <div onclick="selectPart('hydraulics')" class="hotspot absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group" style="left: 45%; top: 75%;">
+                                <div id="dot-hydraulics" class="ring-border w-6 h-6 rounded-full border-2 bg-slate-900/80 border-amber-500 transition-all shadow-lg flex items-center justify-center hover:scale-110">
+                                    <div class="dot w-2 h-2 rounded-full bg-amber-500"></div>
+                                </div>
+                                <div class="hidden md:block absolute top-8 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-3 rounded border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Hidráulica</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Quick Navigation -->
+                    <div class="mt-6 flex flex-wrap gap-2 justify-center lg:justify-start" id="quick-nav"></div>
+                </div>
+
+                <!-- Details Panel -->
+                <div id="details-panel" class="lg:col-span-1 bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl h-full flex flex-col transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-4 text-amber-500">
+                        <div id="detail-icon"></div>
+                        <h3 id="detail-title" class="text-lg md:text-xl font-bold text-white">Selecione...</h3>
+                    </div>
+                    
+                    <p id="detail-desc" class="text-sm md:text-base text-slate-300 mb-6 leading-relaxed border-b border-slate-700 pb-4">
+                        Clique em um ponto da máquina para ver detalhes técnicos.
+                    </p>
+
+                    <div class="space-y-6 flex-grow">
+                        <div>
+                            <h4 class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Soluções Aplicáveis</h4>
+                            <ul id="detail-solutions" class="space-y-2"></ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Ficha Técnica</h4>
+                            <div id="detail-specs" class="flex flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-slate-700">
+                        <a href="#contact" class="w-full py-3 bg-white hover:bg-slate-100 text-slate-900 font-bold rounded flex items-center justify-center gap-2 transition-colors">
+                            Cotar este Serviço <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 md:py-20 bg-slate-950">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="mb-12 md:mb-16 md:flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">Segmentos de Atuação</h2>
+                    <p class="text-sm md:text-base text-slate-400 max-w-xl">
+                        Atuamos em todas as frentes da indústria de transformação plástica e automação.
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group p-6 bg-slate-900 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all duration-300">
+                    <div class="mb-4 p-3 bg-slate-950 rounded-lg inline-block border border-slate-800 group-hover:border-amber-500/30">
+                        <i data-lucide="settings" class="w-10 h-10 text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors">Máquinas Injetoras</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Manutenção corretiva, preventiva e preditiva em injetoras de plásticos.</p>
+                </div>
+                <div class="group p-6 bg-slate-900 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all duration-300">
+                    <div class="mb-4 p-3 bg-slate-950 rounded-lg inline-block border border-slate-800 group-hover:border-amber-500/30">
+                        <i data-lucide="cpu" class="w-10 h-10 text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors">Automação Industrial</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Programação de CLPs e integração de sistemas para chão de fábrica.</p>
+                </div>
+                <div class="group p-6 bg-slate-900 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all duration-300">
+                    <div class="mb-4 p-3 bg-slate-950 rounded-lg inline-block border border-slate-800 group-hover:border-amber-500/30">
+                        <i data-lucide="zap" class="w-10 h-10 text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors">Manutenção Elétrica</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Diagnóstico de falhas e adequação às normas de segurança vigentes.</p>
+                </div>
+                <div class="group p-6 bg-slate-900 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all duration-300">
+                    <div class="mb-4 p-3 bg-slate-950 rounded-lg inline-block border border-slate-800 group-hover:border-amber-500/30">
+                        <i data-lucide="wrench" class="w-10 h-10 text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors">Hidráulica & Pneumática</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Reparo de bombas, válvulas e cilindros com bancada de testes.</p>
+                </div>
+                <div class="group p-6 bg-slate-900 border border-slate-800 rounded-lg hover:border-amber-500/50 hover:bg-slate-800 transition-all duration-300">
+                    <div class="mb-4 p-3 bg-slate-950 rounded-lg inline-block border border-slate-800 group-hover:border-amber-500/30">
+                        <i data-lucide="pen-tool" class="w-10 h-10 text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors">Retrofit Completo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Modernização total de equipamentos obsoletos para performance de nova.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 md:py-16 border-y border-slate-900 bg-slate-900/50">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">15+</div>
+                <div class="text-xs md:text-sm text-slate-500 uppercase tracking-wider">Anos de Experiência</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">500+</div>
+                <div class="text-xs md:text-sm text-slate-500 uppercase tracking-wider">Projetos Entregues</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">24h</div>
+                <div class="text-xs md:text-sm text-slate-500 uppercase tracking-wider">Atendimento Emergencial</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">100%</div>
+                <div class="text-xs md:text-sm text-slate-500 uppercase tracking-wider">Adequação NR-12</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white mb-6">Vamos modernizar sua fábrica?</h2>
+                    <p class="text-slate-400 mb-8 text-base md:text-lg">Entre em contato com nossos engenheiros. Não temos vendedores comuns, temos especialistas técnicos prontos para entender sua demanda.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-slate-800 rounded text-amber-500"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">Telefone Comercial</h4>
+                                <p class="text-slate-400">+55 (11) 99999-9999</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-slate-800 rounded text-amber-500"><i data-lucide="mail" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">E-mail Técnico</h4>
+                                <p class="text-slate-400">engenharia@industech.com.br</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-2xl shadow-2xl">
+                    <h3 class="text-xl font-bold text-white mb-6">Formulário Técnico</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-400 mb-1">Nome</label>
+                                <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="Seu nome" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-400 mb-1">Empresa</label>
+                                <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="Nome da Indústria" />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">E-mail Corporativo</label>
+                            <input type="email" required class="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="voce@empresa.com" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Detalhes da Necessidade</label>
+                            <textarea rows="4" class="w-full bg-slate-950 border border-slate-800 rounded p-3 text-white focus:border-amber-500 focus:outline-none transition-colors" placeholder="Descreva o problema..."></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" class="w-full py-4 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded flex items-center justify-center gap-2 transition-all">Solicitar Contato</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 text-sm text-slate-500">
+        <div class="container mx-auto px-4 text-center">&copy; 2024 IndusTech. Todos os direitos reservados.</div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const machineData = {
+            injection: {
+                title: 'Unidade de Injeção',
+                icon: 'database',
+                description: 'Recuperação de eficiência de plastificação e precisão de dosagem.',
+                solutions: ['Recuperação de Cilindro e Rosca', 'Substituição de Resistências', 'Capa Térmica Eficiente', 'Calibração de Transdutores'],
+                specs: ['Aço SAE 8550', 'Nitretação', 'Isolamento Premium']
+            },
+            clamping: {
+                title: 'Unidade de Fechamento',
+                icon: 'box',
+                description: 'Garantia de paralelismo e força de fechamento para evitar rebarbas.',
+                solutions: ['Embuxamento Completo', 'Retífica de Colunas', 'Ajuste de Paralelismo', 'Réguas Potenciométricas'],
+                specs: ['Bronze SAE 65', 'Cromo Duro', 'Sensores Lineares']
+            },
+            panel: {
+                title: 'Painel e Automação',
+                icon: 'cpu',
+                description: 'Atualização tecnológica para controle total e Indústria 4.0.',
+                solutions: ['Retrofit de CLP e IHM', 'Adequação à NR-12', 'Integração de Dados', 'Controle PID Preciso'],
+                specs: ['CLP Siemens', 'Relés de Segurança', 'Profinet']
+            },
+            hydraulics: {
+                title: 'Hidráulica e Servos',
+                icon: 'activity',
+                description: 'Otimização energética e resposta dinâmica do sistema.',
+                solutions: ['Instalação de Servo Motor', 'Troca de Vedações', 'Filtragem de Óleo', 'Válvulas Proporcionais'],
+                specs: ['Servo Drives', 'Bombas de Engrenagem', 'Vedações Viton']
+            }
+        };
+
+        function selectPart(partId) {
+            const data = machineData[partId];
+            if (!data) return;
+
+            // Reseta Dots
+            ['clamping', 'injection', 'panel', 'hydraulics'].forEach(id => {
+                const dot = document.getElementById(`dot-${id}`);
+                if(dot) {
+                    dot.parentElement.classList.remove('hotspot-active');
+                    dot.parentElement.classList.add('hotspot-inactive');
+                }
+            });
+
+            // Ativa o selecionado
+            const activeDot = document.getElementById(`dot-${partId}`);
+            if(activeDot) {
+                activeDot.parentElement.classList.remove('hotspot-inactive');
+                activeDot.parentElement.classList.add('hotspot-active');
+            }
+
+            // Atualizar Painel de Detalhes
+            renderQuickNav(partId);
+            const iconContainer = document.getElementById('detail-icon');
+            iconContainer.innerHTML = `<i data-lucide="${data.icon}" class="w-6 h-6"></i>`;
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-desc').innerText = data.description;
+            const solList = document.getElementById('detail-solutions');
+            solList.innerHTML = data.solutions.map(sol => `<li class="flex items-start gap-2 text-xs md:text-sm text-slate-300"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"></i>${sol}</li>`).join('');
+            const specList = document.getElementById('detail-specs');
+            specList.innerHTML = data.specs.map(spec => `<span class="px-2 py-1 bg-slate-900 border border-slate-700 rounded text-xs text-slate-400">${spec}</span>`).join('');
+            lucide.createIcons();
+        }
+
+        function renderQuickNav(activeId) {
+            const container = document.getElementById('quick-nav');
+            container.innerHTML = Object.entries(machineData).map(([key, value]) => `
+                <button onclick="selectPart('${key}')" class="flex-grow md:flex-grow-0 px-3 py-2 text-xs md:text-sm rounded border transition-colors ${activeId === key ? 'bg-amber-500/10 border-amber-500 text-amber-500' : 'bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-500'}">${value.title}</button>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            selectPart('clamping');
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 20) {
+                    nav.classList.add('bg-slate-900/95', 'backdrop-blur-md', 'border-b', 'border-slate-800', 'py-4');
+                    nav.classList.remove('bg-transparent', 'py-6');
+                } else {
+                    nav.classList.remove('bg-slate-900/95', 'backdrop-blur-md', 'border-b', 'border-slate-800', 'py-4');
+                    nav.classList.add('bg-transparent', 'py-6');
+                }
+            });
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const iconName = mobileMenu.classList.contains('hidden') ? 'menu' : 'x';
+                menuBtn.innerHTML = `<i data-lucide="${iconName}"></i>`;
+                lucide.createIcons();
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.innerHTML = `<i data-lucide="menu"></i>`;
+                    lucide.createIcons();
+                });
+            });
+            const form = document.getElementById('contact-form');
+            const btn = document.getElementById('submit-btn');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                btn.innerText = "Enviando...";
+                btn.disabled = true;
+                setTimeout(() => {
+                    btn.innerHTML = `Mensagem Enviada <i data-lucide="check-circle" class="w-5 h-5 ml-2"></i>`;
+                    btn.classList.remove('bg-amber-500', 'hover:bg-amber-600', 'text-slate-900');
+                    btn.classList.add('bg-emerald-600', 'text-white');
+                    lucide.createIcons();
+                    setTimeout(() => {
+                        btn.innerText = "Solicitar Contato";
+                        btn.classList.add('bg-amber-500', 'hover:bg-amber-600', 'text-slate-900');
+                        btn.classList.remove('bg-emerald-600', 'text-white');
+                        btn.disabled = false;
+                        form.reset();
+                    }, 3000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
